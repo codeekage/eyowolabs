@@ -1,0 +1,151 @@
+# REST APIs
+
+## Getting Started
+Before you can integrate Eyowo Payment Service in your application, you first need to set up a development environment and get an APP_KEY from your developer's dashboard. You'll need this credentials for authorizing your REST API calls. Please, the Setup developer Environment above to get started.
+
+Quickly login into your user's dashboard, activate developer mode and create a developers account to get credentials. Note, each account provides a level of privilege and access to Eyowo. 
+
+## Get Credentials
+
+Eyowo Payment Services provides a developer with two credentials: 
+
+- *APP_KEY:* The APP_KEY (Application Key) provides your project with a unique identification, and used for every HTTP Request.
+- *APP_SECRET:* The APP_SECRET
+
+You can obtain these credentials from your developer dashboard.
+
+<aside class="warning">Note: Never expose your application credentials to a third and even in your project. See Best Practices for implementations.
+</aside> 
+
+## Make REST API Calls
+
+When making Eyowo REST API, you'll always include the URL to the service and your KEY:
+
+- API_URL: `https://api.console.eyowo.com/v1/`.
+- APP_KEY: <unique_to_your_application>
+
+Sample API call for `validating` a user's account using their phone number: 
+
+
+```shell
+curl --location --request POST "https://api.console.eyowo.com/v1/users/auth/validate" \
+  --header "Content-Type: application/json" \
+  --header "X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9" \
+  --data "{
+	\"mobile\": \"2348000000000\"
+}"
+```
+
+```ruby
+require 'net/http'
+require 'json'
+
+uri = URI('https://api.console.eyowo.com/v1/users/auth/validate')
+res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+  req = Net::HTTP::Post.new(uri)
+
+  req['Content-Type'] = 'application/json'
+  req['X-App-Key'] = '842e87acd5ef90caae15fb7bcdf882e9'
+
+  req.body = { mobile: '2348000000000' }.to_json
+  http.request(req)
+end
+
+puts res
+```
+
+```javascript
+const eyowo = require('eyowo-js');
+
+const appKey = process.env.APP_KEY;
+const appSecret = process.env.APP_SECRET;
+
+const client = new eyowo.Client({
+  appKey,
+  appSecret,
+  environment: 'production'
+});
+
+(async () => {
+  const response = await client.validateUser({ mobile: '2348000000000' });
+
+  console.log(response)
+})();
+```
+> Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": "OKHN8E4SS",
+      "mobile": "2348000000000"
+    }
+  },
+  "message": "Validation successful"
+}
+```
+
+## API References
+
+**API Request**
+
+Your API Request will always be a combination of the URL to the service, the URI to the resource to query, submit data to, update, or delete and an HTTP verb. 
+
+Currently, Eyowo doesn't support pagination query parameters like limit, count, page, page_size etc. However, we hope to do in future. 
+
+Supported HTTP verb for Eyowo: POST, GET, PUT and DELETE
+
+### HTTP request headers
+
+Eyowo Payment Service supports the commonly used HTTP request headers
+
+- **Accept** `Accept: application/<format>`.
+`format`: `json`
+
+- **Content-Type** `Content-Type`: `application/json`
+
+- **X-APP-KEY**
+This an alpha-numeric string that identifies your application often needed for every HTTP request to the service.
+
+- **X-App-Wallet-Access-Token**
+The access token identifies a user's wallet, often needed when querying your user's Eyowo account for transactions like:
+    - getting balance
+    - transferring funds (Eyowo to bank account/Eyowo to Eyowo)
+    - etc.
+
+
+### API Responses
+
+Eyowo REST API always returns a `json` responses with an HTTP status code, which make it easier to predict results or outputs when developing a product. The response structure is as follows: 
+`{
+ success: boolean,
+ data: object
+}`
+
+### HTTP status codes
+
+For successful requests, Eyowo returns HTTP `2xx` status code. 
+For failed requests, Eyowo returns `4xx` and `5xx` status code. 
+
+See the responses table below:
+
+Response Code | Meaning
+------------- | -------
+200 | Ok -- Request was successful
+400 | Bad Request -- Your request is invalid.
+401 | Unauthorized -- Your API key is wrong.
+403 | Forbidden -- The kitten requested is hidden for administrators only.
+404 | Not Found -- The specified kitten could not be found.
+405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
+406 | Not Acceptable -- You requested a format that isn't json.
+410 | Gone -- The kitten requested has been removed from our servers.
+418 | I'm a teapot.
+429 | Too Many Requests -- You're requesting too many kittens! Slow down!
+500 | Internal Server Error -- We had a problem with our server. Try again later.
+503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+
+
+
+
