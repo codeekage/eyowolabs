@@ -1,0 +1,96 @@
+<h1 id='overview'>Overview</h1><h2 id='what-is-eyowo-payment-service'>What is Eyowo Payment Service?</h2>
+<p>Eyowo is first of its kind payment solution, and our service only banks on your user&#39;s phone numbers. </p>
+
+<p>Documentation has been well-thought through to give you a quality developer experience. Cheers! 🎉 🍻</p>
+<h2 id='why-eyowo-payment-service'>Why Eyowo Payment Service?</h2>
+<ul>
+<li><p><strong>Security:</strong> Your users are guaranteed 100% financial security as their credit card details are never exposed or used. </p></li>
+<li><p><strong>Seamlessly Integration:</strong> Eyowo engineers have made integrating Eyowo seamless with the use of RESTful APIs.</p></li>
+<li><p><strong>Battle Tested:</strong> Eyowo Payment Service runs on a battle-tested server. At Eyowo understand how a failed payment can be daunting to your users, we&#39;ve deployed our services on servers that can process millions of requests in milliseconds. </p></li>
+</ul>
+<h2 id='how-eyowo-payment-service-works'>How Eyowo Payment Service Works?</h2>
+<p>We understand how users can be sceptical with supplying bank information and how they give up on using your platforms because of this.</p>
+
+<p>Eyowo doesn&#39;t bother about bank information when it comes to solving payment problems. No credit or debit card needed when deploying Eyowo as your preferred payment solution. </p>
+
+<p>Your users supply their phone number on sign up. And we take care of setting up an Eyowo account for your users while delivering a smooth payment contract on your behalf.</p>
+<h1 id='basic-integrations'>Basic Integrations</h1>
+<p>Adding Eyowo in your application, the guide will help:</p>
+
+<ul>
+<li>Integrate Eyowo Payment Service for your application</li>
+<li>Test Eyowo Payment Service</li>
+</ul>
+<h2 id='set-up-your-developer-environment'>Set Up Your Developer Environment</h2><h3 id='create-a-user-39-s-account'>Create A User&#39;s Account</h3>
+<p>To start using Eyowo as a developer, you first need to be to set up a user&#39;s account. 
+Users account are associated with an Eyowo Wallet which you will need to add in your developer dashboard. 
+The user&#39;s account is also where you will enable developer mode. </p>
+
+<ol>
+<li>Visit eyowo.com and enter your phone</li>
+<li>Click on the Get Started button</li>
+<li>Choose a password and enter the OTP sent to you</li>
+</ol>
+<h3 id='activating-developers-mode'>Activating Developers Mode</h3>
+<p>The developer acknowledges the users as a developer and adds some extra privileges to your account.</p>
+
+<ol>
+<li>Visit app.eyowo.com and ensure you are logged in</li>
+<li>Click on the profile image on the top right of your user&#39;s dashboard.</li>
+<li>Click on settings</li>
+<li>Enable developer mode</li>
+</ol>
+<h3 id='deactivating-developers-mode'>Deactivating Developers Mode</h3>
+<p>Toggle the Developer Mode button to deactivate. Note, you lose developer privileges once the action is performed. </p>
+<h2 id='managing-developer-account'>Managing Developer Account</h2>
+<p><strong>Creating a Developer&#39;s Account</strong></p>
+
+<p>You&#39;ll need a separate developer&#39;s account to use Eyowo Payment Service as a developer. Some features of your developer&#39;s account:</p>
+
+<ul>
+<li>Create an application </li>
+<li>Obtain application credentials for HTTP requests</li>
+</ul>
+
+<p>To do this:</p>
+
+<ol>
+<li>Visit <a href=" https://developer.eyowo.com" target="_blank">https://developer.eyowo.com</a></li>
+<li>Create an account using your email and choose a password</li>
+</ol>
+<h3 id='adding-an-application-and-wallet'>Adding an Application and Wallet</h3>
+<p>This project/application are unique and have separate credentials like</p>
+
+<ul>
+<li>Application Keys</li>
+<li>Application Secret</li>
+</ul>
+
+<p>To do this:</p>
+
+<ol>
+<li>Click on add an application</li>
+<li>Click add a wallet</li>
+</ol>
+
+<aside class="warning">Note: Your wallet's credential is usually the phone number you used in creating your Eyowo user's account.</aside>
+<h3 id='deleting-or-change-wallet'>Deleting or Change Wallet</h3>
+<p>If you&#39;ve entered different Eyowo Wallet details (the phone number used in creating the user&#39;s account), you can update the wallet by:</p>
+
+<ul>
+<li>Click on the &#39;x&#39; button</li>
+<li>Accept the prompts that follow</li>
+<li>Either delete or add a new wallet</li>
+</ul>
+
+<p>Deleting An Application
+Deleting an application you longer want to have come easy too. </p>
+
+<ul>
+<li>Click on settings from your developer dashboard</li>
+<li>Navigate to delete the application </li>
+<li>Follow the prompts to complete deletions</li>
+</ul>
+
+<aside class="warning">Note: There are no recovery processes once an application gets deleted.</aside> 
+<h1 id='community-sdks-coming-soon'>Community SDKs (coming soon)</h1>
