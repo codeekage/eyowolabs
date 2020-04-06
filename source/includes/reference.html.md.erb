@@ -404,6 +404,69 @@ Parameter | Type | Description
 `mobile` | string | The corresponding phone number of the registered user.
 `balance` | long | The wallet balance of the user in Kobo.
 
+## Bank
+
+## Get Banks
+
+```shell
+curl --location --request GET "https://api.console.eyowo.com/v1/queries/banks" \
+  --header "Content-Type: application/json" \
+  --header "X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"
+```
+
+> Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "banks": [
+      {
+        "bankCode": "000014",
+        "bankName": "ACCESS BANK"
+      },
+      {
+        "bankCode": "000010",
+        "bankName": "ECOBANK"
+      },
+      {
+        "bankCode": "000016",
+        "bankName": "FIRST BANK OF NIGERIA"
+      },
+      {
+        "bankCode": "000003",
+        "bankName": "FIRST CITY MONUMENT BANK"
+      },
+      {
+        "bankCode": "000013",
+        "bankName": "GTBANK PLC"
+      },
+      {
+        "bankCode": "000020",
+        "bankName": "HERITAGE BANK"
+      },
+      {
+        "bankCode": "000012",
+        "bankName": "STANBIC IBTC BANK"
+      },
+      ...
+    ]
+  }
+}
+```
+
+This resource is used to retrieve a list of available banks for bank transfer transactions.
+
+### HTTP Request
+
+`GET https://api.console.eyowo.com/v1/queries/banks`
+
+### Response
+A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting `banks` object.
+
+The `banks` object contains an array of available banks. Each array item contains a bank name and bank code.
+
+
 ## Transfer
 
 ## Transfer to Phone
@@ -557,43 +620,6 @@ Parameter | Type | Description
 `mobile` | string | The corresponding phone number of the registered user.
 `balance` | long | The wallet balance of the user in Kobo.
 
-
-## Transactions
-
-```shell
-curl --location --request GET "https://api.console.eyowo.com/v1/users/transactions" \
-  --header "Content-Type: application/json" \
-  --header "X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9" \
-  --header "X-App-Wallet-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNGVmZTQ2NWMwOTJmNWE1NGE1ZjVhNSIsIm1vYmlsZSI6IjIzNDkwOTU4MDE3NzIiLCJpYXQiOjE1NDg2ODA3NzQsImV4cCI6MTU0ODc2NzE3NH0.hUjwqiSfk1J6HaMwDkNsKkOJdTaEoT0wO54pFFDCyzA" \
-```
-
-> Response 
-
-```
-{
-  "success": true,
-  "data": {
-    "transactions": [
-        {
-            "amount": 100000,
-            "reference": "5d1a8bd6f9be2b6a62e0d104",
-            "type": "PHONE_TRANSFER",
-            "recipient": {
-                "eyowo": {
-                    "userID": "5d0ab9145c1a81610ff4b89d",
-                    "mobile": "2349095801772"
-                }
-            },
-            "createdAt": "2019-07-01T22:40:22.122Z",
-            "updatedAt": "2019-07-01T22:40:22.122Z"
-        },
-      }
-    ]
-  }
-}
-```
-### Response
-
 ## Virtual Top Up (VTU)
 
 ## Buy VTU
@@ -633,64 +659,3 @@ Parameter | Type | Description
 `mobile` | string | The corresponding phone number of the registered user.
 `balance` | long | The wallet balance of the user in Kobo.
 
-## Bank
-
-## Get Banks
-
-```shell
-curl --location --request GET "https://api.console.eyowo.com/v1/queries/banks" \
-  --header "Content-Type: application/json" \
-  --header "X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"
-```
-
-> Response
-
-```json
-{
-  "success": true,
-  "data": {
-    "banks": [
-      {
-        "bankCode": "000014",
-        "bankName": "ACCESS BANK"
-      },
-      {
-        "bankCode": "000010",
-        "bankName": "ECOBANK"
-      },
-      {
-        "bankCode": "000016",
-        "bankName": "FIRST BANK OF NIGERIA"
-      },
-      {
-        "bankCode": "000003",
-        "bankName": "FIRST CITY MONUMENT BANK"
-      },
-      {
-        "bankCode": "000013",
-        "bankName": "GTBANK PLC"
-      },
-      {
-        "bankCode": "000020",
-        "bankName": "HERITAGE BANK"
-      },
-      {
-        "bankCode": "000012",
-        "bankName": "STANBIC IBTC BANK"
-      },
-      ...
-    ]
-  }
-}
-```
-
-This resource is used to retrieve a list of available banks for bank transfer transactions.
-
-### HTTP Request
-
-`GET https://api.console.eyowo.com/v1/queries/banks`
-
-### Response
-A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting `banks` object.
-
-The `banks` object contains an array of available banks. Each array item contains a bank name and bank code.
