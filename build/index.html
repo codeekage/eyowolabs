@@ -286,13 +286,10 @@
                     <a href="#user-authorization" class="toc-h2 toc-link" data-title="User Authorization">User Authorization</a>
                   </li>
                   <li>
-                    <a href="#wallet-access-token-refresh" class="toc-h2 toc-link" data-title="Wallet Access Token Refresh">Wallet Access Token Refresh</a>
+                    <a href="#refresh-wallet-access-token" class="toc-h2 toc-link" data-title="Refresh Wallet Access Token">Refresh Wallet Access Token</a>
                   </li>
                   <li>
                     <a href="#query-wallet-balance" class="toc-h2 toc-link" data-title="Query Wallet Balance">Query Wallet Balance</a>
-                  </li>
-                  <li>
-                    <a href="#querying-banks" class="toc-h2 toc-link" data-title="Querying Banks">Querying Banks</a>
                   </li>
                   <li>
                     <a href="#transfer-to-phone" class="toc-h2 toc-link" data-title="Transfer to Phone">Transfer to Phone</a>
@@ -301,7 +298,13 @@
                     <a href="#transfer-to-bank" class="toc-h2 toc-link" data-title="Transfer to Bank">Transfer to Bank</a>
                   </li>
                   <li>
+                    <a href="#transactions" class="toc-h2 toc-link" data-title="Transactions">Transactions</a>
+                  </li>
+                  <li>
                     <a href="#virtual-top-up-vtu" class="toc-h2 toc-link" data-title="Virtual Top Up (VTU)">Virtual Top Up (VTU)</a>
+                  </li>
+                  <li>
+                    <a href="#querying-banks" class="toc-h2 toc-link" data-title="Querying Banks">Querying Banks</a>
                   </li>
               </ul>
           </li>
@@ -926,7 +929,7 @@ received from a successful login initiation request.</p>
 <aside class="notice">
 `accessToken` is the user wallet access token. This is passed in the `X-App-Wallet-Access-Token` header.
 </aside>
-<h2 id='wallet-access-token-refresh'>Wallet Access Token Refresh</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.console.eyowo.com/v1/users/accessToken"</span> <span class="se">\</span>
+<h2 id='refresh-wallet-access-token'>Refresh Wallet Access Token</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.console.eyowo.com/v1/users/accessToken"</span> <span class="se">\</span>
   --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
   --data <span class="s2">"{
@@ -1056,57 +1059,6 @@ received from a successful login initiation request.</p>
 <td>The wallet balance of the user in Kobo.</td>
 </tr>
 </tbody></table>
-<h2 id='querying-banks'>Querying Banks</h2><pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.console.eyowo.com/v1/queries/banks"</span> <span class="se">\</span>
-  --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span>
-</code></pre>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"banks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000014"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCESS BANK"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000010"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ECOBANK"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000016"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST BANK OF NIGERIA"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000003"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST CITY MONUMENT BANK"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000013"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTBANK PLC"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000020"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HERITAGE BANK"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000012"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANBIC IBTC BANK"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This resource is used to retrieve a list of available banks for bank transfer transactions.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://api.console.eyowo.com/v1/queries/banks</code></p>
-<h3 id='response-4'>Response</h3>
-<p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>banks</code> object.</p>
-
-<p>The <code>banks</code> object contains an array of available banks. Each array item contains a bank name and bank code.</p>
 <h2 id='transfer-to-phone'>Transfer to Phone</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.console.eyowo.com/v1/users/transfers/phone"</span> <span class="se">\</span>
   --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
@@ -1152,7 +1104,7 @@ received from a successful login initiation request.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This resource is used to transfer funds from a user wallet to a given phone number.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST https://api.console.eyowo.com/v1/users/transfers/phone</code></p>
 <h3 id='request-body-5'>Request Body</h3>
 <table><thead>
@@ -1229,7 +1181,7 @@ All amounts are in Kobo.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This resource is used to transfer money from a user wallet to a given bank account.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST https://api.console.eyowo.com/v1/users/transfers/bank</code></p>
 <h3 id='request-body-6'>Request Body</h3>
 <table><thead>
@@ -1265,7 +1217,7 @@ All amounts are in Kobo.
 <td>Unique code of bank.</td>
 </tr>
 </tbody></table>
-<h3 id='response-5'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>user</code> object.</p>
 
 <p>The <code>user</code> object contains the following attributes:</p>
@@ -1293,6 +1245,179 @@ All amounts are in Kobo.
 <td>The wallet balance of the user in Kobo.</td>
 </tr>
 </tbody></table>
+<h2 id='transactions'>Transactions</h2>
+<blockquote>
+<p>Get User Transactions</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.console.eyowo.com/v1/users/transactions"</span> <span class="se">\</span>
+  --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Wallet-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNGVmZTQ2NWMwOTJmNWE1NGE1ZjVhNSIsIm1vYmlsZSI6IjIzNDkwOTU4MDE3NzIiLCJpYXQiOjE1NDg2ODA3NzQsImV4cCI6MTU0ODc2NzE3NH0.hUjwqiSfk1J6HaMwDkNsKkOJdTaEoT0wO54pFFDCyzA"</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>Responses</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f5791735183d4378865633"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHONE_TRANSFER"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"eyowo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"userID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f5791735183d4378865633"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23499999999999"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f5791735183d4378865633"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK_TRANSFER"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111111"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe Doe"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000014"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The endpoint retrieves the user transactions performed using your application key <code>X-App-Key</code> and wallet access token <code>X-App-Wallet-Access-Token</code>. </p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.console.eyowo.com/v1/users/transactions</code></p>
+<h3 id='http-responses'>HTTP Responses</h3>
+<p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>transactions</code> object.</p>
+
+<p>The <code>transactions</code> array of objects that contains the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>amount</code></td>
+<td><code>Unit</code></td>
+<td>The amount of the transactions</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td><code>String</code></td>
+<td>The unique identifier of the <code>transaction</code> user.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>String Enum</code></td>
+<td>The type of transaction performed <code>[&quot;TRANSFER_PHONE&quot;, &quot;BANK_TRANSFER&quot;, &quot;BVN&quot;, &quot;BILLS&quot;]</code>.</td>
+</tr>
+<tr>
+<td><code>recipient</code></td>
+<td><code>Object</code></td>
+<td>An object describing the transaction recipient.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>ISO String Date</code></td>
+<td>The date the transaction was created at.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>ISO String Date</code></td>
+<td>The date the transaction was updated at.</td>
+</tr>
+</tbody></table>
+<h3 id='transactions-get-by-transaction-reference'>Transactions - Get by Transaction Reference</h3>
+<blockquote>
+<p>GET User Transaction by TransactionReference</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.console.eyowo.com/v1/users/transactions/:transactionReference"</span> <span class="se">\</span>
+  --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Wallet-Access-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNGVmZTQ2NWMwOTJmNWE1NGE1ZjVhNSIsIm1vYmlsZSI6IjIzNDkwOTU4MDE3NzIiLCJpYXQiOjE1NDg2ODA3NzQsImV4cCI6MTU0ODc2NzE3NH0.hUjwqiSfk1J6HaMwDkNsKkOJdTaEoT0wO54pFFDCyzA"</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"transaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d1a8bd6f9be2b6a62e0d104"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHONE_TRANSFER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"eyowo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"userID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d0ab9145c1a81610ff4b89d"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2349095801772"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-01T22:40:22.122Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Adding the <code>:/transactionReference</code> in the request parameter, you can retrieve a particular transaction.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET</code></p>
+
+<p><code>https://api.console.eyowo.com/v1/users/transactions/:transactionReference</code></p>
+
+<p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>transaction</code> object.</p>
+
+<p>The <code>transaction</code> object contains the following attributes:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>amount</code></td>
+<td><code>Unit</code></td>
+<td>The amount of the transactions</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td><code>String</code></td>
+<td>The unique identifier of the <code>transaction</code> user.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>String Enum</code></td>
+<td>The type of transaction performed <code>[&quot;TRANSFER_PHONE&quot;, &quot;BANK_TRANSFER&quot;, &quot;BVN&quot;, &quot;BILLS&quot;]</code>.</td>
+</tr>
+<tr>
+<td><code>recipient</code></td>
+<td><code>Object</code></td>
+<td>An object describing the transaction recipient.</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td><code>ISO String Date</code></td>
+<td>The date the transaction was created at.</td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td><code>ISO String Date</code></td>
+<td>The date the transaction was updated at.</td>
+</tr>
+</tbody></table>
 <h2 id='virtual-top-up-vtu'>Virtual Top Up (VTU)</h2><pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.console.eyowo.com/v1/users/payments/bills/vtu"</span> <span class="se">\</span>
   --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
@@ -1304,7 +1429,7 @@ All amounts are in Kobo.
 }"</span>
 </code></pre>
 <p>This resource is used to make virtual top ups.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST https://api.console.eyowo.com/v1/users/payments/bills/vtu</code></p>
 <h3 id='request-body-7'>Request Body</h3>
 <table><thead>
@@ -1334,7 +1459,7 @@ All amounts are in Kobo.
 <td>Billing provider to make virtual top up. (etisalat, glo, airtel, mtn)</td>
 </tr>
 </tbody></table>
-<h3 id='response-6'>Response</h3>
+<h3 id='response-5'>Response</h3>
 <p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>user</code> object.</p>
 
 <p>The <code>user</code> object contains the following attributes:</p>
@@ -1362,6 +1487,57 @@ All amounts are in Kobo.
 <td>The wallet balance of the user in Kobo.</td>
 </tr>
 </tbody></table>
+<h2 id='querying-banks'>Querying Banks</h2><pre class="highlight shell tab-shell"><code>curl --location --request GET <span class="s2">"https://api.console.eyowo.com/v1/queries/banks"</span> <span class="se">\</span>
+  --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"banks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCESS BANK"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000010"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ECOBANK"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST BANK OF NIGERIA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIRST CITY MONUMENT BANK"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000013"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTBANK PLC"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000020"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HERITAGE BANK"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"bankCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000012"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANBIC IBTC BANK"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This resource is used to retrieve a list of available banks for bank transfer transactions.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET https://api.console.eyowo.com/v1/queries/banks</code></p>
+<h3 id='response-6'>Response</h3>
+<p>A successful request receives a response with an HTTP 200 status code with a response body containing a data object consisting <code>banks</code> object.</p>
+
+<p>The <code>banks</code> object contains an array of available banks. Each array item contains a bank name and bank code.</p>
 <h1 id='errors'>Errors</h1>
 <p>The Eyowo Developer API utilizes the following HTTP status codes to indicate errors:</p>
 
