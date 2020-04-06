@@ -1,0 +1,169 @@
+<h1 id='rest-apis'>REST APIs</h1><h2 id='getting-started'>Getting Started</h2>
+<p>Before you can integrate Eyowo Payment Service in your application, you first need to set up a development environment and get an APP_KEY from your developer&#39;s dashboard. You&#39;ll need this credentials for authorizing your REST API calls. Please, the Setup developer Environment above to get started.</p>
+
+<p>Quickly login into your user&#39;s dashboard, activate developer mode and create a developers account to get credentials. Note, each account provides a level of privilege and access to Eyowo. </p>
+<h2 id='get-credentials'>Get Credentials</h2>
+<p>Eyowo Payment Services provides a developer with two credentials: </p>
+
+<ul>
+<li><em>APP_KEY:</em> The APP_KEY (Application Key) provides your project with a unique identification, and used for every HTTP Request.</li>
+<li><em>APP_SECRET:</em> The APP_SECRET</li>
+</ul>
+
+<p>You can obtain these credentials from your developer dashboard.</p>
+
+<aside class="warning">Note: Never expose your application credentials to a third and even in your project. See Best Practices for implementations.
+</aside> 
+<h2 id='make-rest-api-calls'>Make REST API Calls</h2>
+<p>When making Eyowo REST API, you&#39;ll always include the URL to the service and your KEY:</p>
+
+<ul>
+<li>API_URL: <code>https://api.console.eyowo.com/v1/</code>.</li>
+<li>APP_KEY: <unique_to_your_application></li>
+</ul>
+
+<p>Sample API call for <code>validating</code> a user&#39;s account using their phone number: </p>
+<pre class="highlight shell tab-shell"><code>curl --location --request POST <span class="s2">"https://api.console.eyowo.com/v1/users/auth/validate"</span> <span class="se">\</span>
+  --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  --header <span class="s2">"X-App-Key: 842e87acd5ef90caae15fb7bcdf882e9"</span> <span class="se">\</span>
+  --data <span class="s2">"{
+    </span><span class="se">\"</span><span class="s2">mobile</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">2348000000000</span><span class="se">\"</span><span class="s2">
+}"</span>
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s1">'https://api.console.eyowo.com/v1/users/auth/validate'</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">use_ssl: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">req</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+
+  <span class="n">req</span><span class="p">[</span><span class="s1">'Content-Type'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'application/json'</span>
+  <span class="n">req</span><span class="p">[</span><span class="s1">'X-App-Key'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'842e87acd5ef90caae15fb7bcdf882e9'</span>
+
+  <span class="n">req</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">mobile: </span><span class="s1">'2348000000000'</span> <span class="p">}.</span><span class="nf">to_json</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">res</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">eyowo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'eyowo-js'</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">appKey</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">APP_KEY</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">appSecret</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">APP_SECRET</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">eyowo</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+  <span class="nx">appKey</span><span class="p">,</span>
+  <span class="nx">appSecret</span><span class="p">,</span>
+  <span class="na">environment</span><span class="p">:</span> <span class="s1">'production'</span>
+<span class="p">});</span>
+
+<span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">validateUser</span><span class="p">({</span> <span class="na">mobile</span><span class="p">:</span> <span class="s1">'2348000000000'</span> <span class="p">});</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+<span class="p">})();</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OKHN8E4SS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2348000000000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Validation successful"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='api-references'>API References</h2>
+<p><strong>API Request</strong></p>
+
+<p>Your API Request will always be a combination of the URL to the service, the URI to the resource to query, submit data to, update, or delete and an HTTP verb. </p>
+
+<p>Currently, Eyowo doesn&#39;t support pagination query parameters like limit, count, page, page_size etc. However, we hope to do in future. </p>
+
+<p>Supported HTTP verb for Eyowo: POST, GET, PUT and DELETE</p>
+<h3 id='http-request-headers'>HTTP request headers</h3>
+<p>Eyowo Payment Service supports the commonly used HTTP request headers</p>
+
+<ul>
+<li><p><strong>Accept</strong> <code>Accept: application/&lt;format&gt;</code>.
+<code>format</code>: <code>json</code></p></li>
+<li><p><strong>Content-Type</strong> <code>Content-Type</code>: <code>application/json</code></p></li>
+<li><p><strong>X-APP-KEY</strong>
+This an alpha-numeric string that identifies your application often needed for every HTTP request to the service.</p></li>
+<li><p><strong>X-App-Wallet-Access-Token</strong>
+The access token identifies a user&#39;s wallet, often needed when querying your user&#39;s Eyowo account for transactions like:</p>
+
+<ul>
+<li>getting balance</li>
+<li>transferring funds (Eyowo to bank account/Eyowo to Eyowo)</li>
+<li>etc.</li>
+</ul></li>
+</ul>
+<h3 id='api-responses'>API Responses</h3>
+<p>Eyowo REST API always returns a <code>json</code> responses with an HTTP status code, which make it easier to predict results or outputs when developing a product. The response structure is as follows: 
+<code>{
+ success: boolean,
+ data: object
+}</code></p>
+<h3 id='http-status-codes'>HTTP status codes</h3>
+<p>For successful requests, Eyowo returns HTTP <code>2xx</code> status code. 
+For failed requests, Eyowo returns <code>4xx</code> and <code>5xx</code> status code. </p>
+
+<p>See the responses table below:</p>
+
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Ok -- Request was successful</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
